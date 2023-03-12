@@ -36,7 +36,10 @@ async def process_message(message: types.Message):
     """
     This handler will be called for every message, except for the /start command.
     """
-    message.text = message.text.replace("/add", "")
+    if message.text.startswith('/add'):
+        # Strip the command name from the message
+        message.text = message.text.replace('/add', '').strip()
+
     # Split the message by commas
     parts = message.text.split(',')
     if len(parts) != 3:
@@ -48,13 +51,12 @@ async def process_message(message: types.Message):
     name = parts[0].strip()
     url = parts[1].strip()
     tags = [tag.strip() for tag in parts[2].split()]
-    created_at = pendulum.now("UTC").isoformat()
-    updated_at = created_at
+    timestamp = pendulum.now("UTC").to_iso8601_string()
 
     # Append the data to the CSV file
     with open(os.getenv('PATH_TO_DATA'), mode='a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([name, url, ','.join(tags), created_at, updated_at])
+        writer.writerow([name, url, ','.join(tags), timestamp, timestamp])
 
     # Send a confirmation message to the user
     await message.reply("Bookmark has been saved.")
