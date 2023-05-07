@@ -40,8 +40,8 @@ async def process_message(message: types.Message):
         # Strip the command name from the message
         message.text = message.text.replace('/add', '').strip()
 
-    # Split the message by commas
-    parts = message.text.split(',')
+    # Split the message by Newline
+    parts = message.text.split('\n')
     if len(parts) != 3:
         logging.info("Invalid Inputs")
         await message.reply("Please send me a message with name, URL and tags separated by commas.")
