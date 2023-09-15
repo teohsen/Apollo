@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "apollo"
+version = "0.1.0"
+description = ""
+authors = ["UnknownUdon"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "1.0.0"
+pendulum = "2.1.2"
+numpy = "1.24.4"
+matplotlib = "3.7.2"
+transformers = "4.31.0"
+polars = "0.19.2"
+pandas = "2.0.3"
+bokeh = "3.2.2"
+torch = {version = "^2.0.1", python = "^3.11", platform = "windows"}
+
+[[tool.poetry.source]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cu117"
+priority = "explicit"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
