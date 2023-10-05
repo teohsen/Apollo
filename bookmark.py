@@ -44,7 +44,7 @@ async def process_message(message: types.Message):
     parts = message.text.split('\n')
     if len(parts) != 3:
         logging.info("Invalid Inputs")
-        await message.reply("Please send me a message with name, URL and tags separated by commas.")
+        await message.reply("Please send me a message with name, URL and tags separated by new line.")
         return
 
     # Extract the name, URL and tags from the message
