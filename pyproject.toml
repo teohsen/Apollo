@@ -16,6 +16,7 @@ polars = "0.19.2"
 pandas = "2.0.3"
 bokeh = "3.2.2"
 torch = {version = "^2.0.1", python = "^3.11", platform = "windows"}
+aiogram = "^3.1.1"
 
 [[tool.poetry.source]]
 name = "torch"
