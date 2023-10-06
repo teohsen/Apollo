@@ -1,10 +1,15 @@
 import logging
 import csv
 import os
+
+import asyncio
 import pendulum
 from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher, types
-from aiogram.utils import executor
+from aiogram import Bot, Dispatcher, Router, types
+from aiogram.enums import ParseMode
+from aiogram.filters import CommandStart, Command
+from aiogram.types import Message
+from aiogram.utils.markdown import hbold
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -16,13 +21,12 @@ bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
 if not bot_token:
     raise ValueError('Telegram Bot token not found in environment variable TELEGRAM_BOT_TOKEN')
 
-# Initialize the bot with the token from the configuration
 bot = Bot(token=bot_token)
-dp = Dispatcher(bot)
+dp = Dispatcher()
 
 
 # Define the handler function for the /start command
-@dp.message_handler(commands=['start'])
+@dp.message(CommandStart())
 async def send_welcome(message: types.Message):
     """
     This handler will be called when user sends /start command.
@@ -31,17 +35,16 @@ async def send_welcome(message: types.Message):
 
 
 # Define the handler function for the messages containing name, URL and tags
-@dp.message_handler(commands=['add'])
+@dp.message(Command("add"))
 async def process_message(message: types.Message):
     """
     This handler will be called for every message, except for the /start command.
     """
-    if message.text.startswith('/add'):
-        # Strip the command name from the message
-        message.text = message.text.replace('/add', '').strip()
+    message_text = message.text
+    message_text = message_text.replace("/add", "").strip()
 
     # Split the message by Newline
-    parts = message.text.split('\n')
+    parts = message_text.split('\n')
     if len(parts) != 3:
         logging.info("Invalid Inputs")
         await message.reply("Please send me a message with name, URL and tags separated by new line.")
@@ -61,5 +64,10 @@ async def process_message(message: types.Message):
     # Send a confirmation message to the user
     await message.reply("Bookmark has been saved.")
 
+
+async def main() -> None:
+    await dp.start_polling(bot)
+
+
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    asyncio.run(main())
