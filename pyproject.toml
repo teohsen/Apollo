@@ -15,13 +15,21 @@ transformers = "4.31.0"
 polars = "0.19.2"
 pandas = "2.0.3"
 bokeh = "3.2.2"
-# torch = {version = "^2.0.1", python = "^3.11", platform = "windows"}
 aiogram = "3.1.1"
+torch = "2.1.0"
+torchvision = "0.16.0"
+torchaudio = "2.1.0"
 
 [[tool.poetry.source]]
 name = "torch"
 url = "https://download.pytorch.org/whl/cu117"
 priority = "explicit"
+
+
+[tool.poetry.group.ultralytics.dependencies]
+ultralytics = {version = "^8.0.196", optional = true}
+#labelimg = {version = "^1.8.6", optional = true}
+labelme = "^5.3.1"
 
 [build-system]
 requires = ["poetry-core"]
