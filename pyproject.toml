@@ -29,7 +29,7 @@ priority = "explicit"
 [tool.poetry.group.ultralytics.dependencies]
 ultralytics = {version = "^8.0.196", optional = true}
 #labelimg = {version = "^1.8.6", optional = true}
-labelme = "^5.3.1"
+labelme = {version = "^5.3.1", platform = "win64"}
 
 [build-system]
 requires = ["poetry-core"]
