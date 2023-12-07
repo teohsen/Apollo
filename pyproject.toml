@@ -26,7 +26,7 @@ url = "https://download.pytorch.org/whl/cu117"
 priority = "explicit"
 
 
-[tool.poetry.group.ultralytics.dependencies]
+[tool.poetry.group.ua.dependencies]
 ultralytics = {version = "^8.0.196", optional = true}
 #labelimg = {version = "^1.8.6", optional = true}
 labelme = {version = "^5.3.1", platform = "win64"}
