@@ -2,3 +2,5 @@
 
 data/*
 weights
+
+runs/classify/train/*
