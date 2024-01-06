@@ -1,0 +1,3 @@
+pendulum
+aiogram
+python-dotenv

@@ -31,7 +31,13 @@ async def send_welcome(message: types.Message):
     """
     This handler will be called when user sends /start command.
     """
-    await message.reply("Hi! I'm your bot. Please send me a message with name, URL and tags separated by commas.")
+    await message.reply(
+        f"""
+        Hi! I'm your bot.
+        Please send me a message with name, URL and tags separated by commas.
+        -- Deployed Version: {os.getenv('GIT_HASH')}"
+        """
+    )
 
 
 # Define the handler function for the messages containing name, URL and tags
