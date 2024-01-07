@@ -33,9 +33,8 @@ async def send_welcome(message: types.Message):
     """
     await message.reply(
         f"""
-        Hi! I'm your bot.
-        Please send me a message with name, URL and tags separated by commas.
-        -- Deployed Version: {os.getenv('GIT_HASH')}"
+        Hi! I'm your bot. Please send me a message with name, URL and tags separated by commas.\n
+        Deployed Version: {os.getenv('GIT_HASH')}
         """
     )
 
