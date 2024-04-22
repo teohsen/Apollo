@@ -4,3 +4,4 @@ data/*
 weights
 
 runs/classify/train/*
+documents/
