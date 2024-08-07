@@ -5,3 +5,4 @@ weights
 
 runs/classify/train/*
 documents/
+/ultralytics/
