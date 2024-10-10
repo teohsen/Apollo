@@ -5,3 +5,7 @@ weights
 
 runs/classify/train/*
 documents/
+
+audio/
+optimization/
+simulation/
